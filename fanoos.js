@@ -27,13 +27,11 @@ function init() { // init function: gets all elements who need fanoos to animate
 
 }
 
-function action(element) {
-  element.css("animation-play-state", "running"); // run the animation
+function run(element) { // run function: play element's css animation
+  element.css("animation-play-state", "running"); // play the animation
 }
 
-init(); // initiate fanoos
-
-$(window).scroll(function(){ // on scrolling
+function action(){ // action function: connect run funtion to real world
 
   var resultList = $.grep(elementList, function(e){ // a list of fanoos elements that should be played
     return e.offsetTop <= ($(window).scrollTop() + $(window).height()); // just when bottom of window reached element
@@ -41,34 +39,18 @@ $(window).scroll(function(){ // on scrolling
 
   if (resultList.length > 0) { // if result list had any elements in it
     for (var i = 0; i < resultList.length; i++) {
-      action( $('[data-fanoos-id="' + resultList[i].fanoosID + '"]') ); // play them one by one
+      run( $('[data-fanoos-id="' + resultList[i].fanoosID + '"]') ); // play them one by one
     }
   }
 
+}
+
+init(); // initiate fanoos
+
+$(window).scroll(function(){ // do action when scrolling
+  action();
 });
 
-$('#action1').on('click', function(e) {
-
-  var element = $('[data-fanoos-id="' + elementList[0].fanoosID + '"]')
-
-  action(element);
-  e.preventDefault();
-})
-
-
-$('#action2').on('click', function(e) {
-
-    var element = $('[data-fanoos-id="' + elementList[1].fanoosID + '"]')
-
-    action(element);
-  e.preventDefault();
-})
-
-
-$('#action3').on('click', function(e) {
-
-    var element = $('[data-fanoos-id="' + elementList[2].fanoosID + '"]')
-
-    action(element);
-  e.preventDefault();
-})
+$( document ).ready(function(){ // do action when document is loaded
+  action();
+});
