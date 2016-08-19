@@ -17,7 +17,7 @@ function init() { // init function: gets all elements who need fanoos to animate
 
     var element = { // create a fannos element
       'fanoosID' : fanoosId, // ID
-      'offsetTop'  : $(this).offset().top // position from top
+      'offsetTop'  : Math.ceil($(this).offset().top) // position from top
     }
 
     elementList.push(element); // add elment to list
@@ -31,11 +31,26 @@ function action(element) {
   element.css("animation-play-state", "running"); // run the animation
 }
 
-init();
+init(); // initiate fanoos
+
+$(window).scroll(function(){ // on scrolling
+
+  var resultList = $.grep(elementList, function(e){ // a list of fanoos elements that should be played
+    return e.offsetTop <= ($(window).scrollTop() + $(window).height()); // just when bottom of window reached element
+  });
+
+  if (resultList.length > 0) { // if result list had any elements in it
+    for (var i = 0; i < resultList.length; i++) {
+      action( $('[data-fanoos-id="' + resultList[i].fanoosID + '"]') ); // play them one by one
+    }
+  }
+
+});
 
 $('#action1').on('click', function(e) {
 
   var element = $('[data-fanoos-id="' + elementList[0].fanoosID + '"]')
+
   action(element);
   e.preventDefault();
 })
