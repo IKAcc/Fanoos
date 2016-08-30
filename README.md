@@ -13,7 +13,7 @@ Fanoos files are licensed under the MIT License:
 We support and encourage any kind of contribution by anyone. Please read through [contributing guidelines](../master/CONTRIBUTING.md). In these guidelines, directions to asking for an option, reporting a bug and other notes are fully explained.
 
 ## Animations
-Fanoos itself is not an animation library so you need to add an CSS toolkit.
+Fanoos itself is not an animation library so you need to add a CSS toolkit.
 
 by defaults, Fanoos looks for [Animate.css](https://github.com/daneden/animate.css).
 
@@ -45,7 +45,7 @@ To use Fanoos on your project, follow these steps:
 ```javascript
 $('body').fanoos()
 ```
-see [Options](#Options) for more initialization options.
+see [Options](#options) for more initialization options.
 
 6) Implement a Fanoos element, using `.fanoos` and animation classes:
 ```html
@@ -55,7 +55,7 @@ see [Options](#Options) for more initialization options.
 | Option        | Default value          | Functionality          |
 | ------------- |:----------------------:| :----------------------|
 | animationClass| 'animated'             | Name of the class which activates animation |
-| duration      | 1000                   | Duration of Animation. _milliseconds_ |
+| duration      | 1000                   | Duration of Animation. _ms_ |
 | offset        | 0                      | Distance from element to play animation. _pixels_ |
 | delay      | 0                         | Time from activating animation to actually playing it. _ms_ |
 
