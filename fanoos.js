@@ -30,6 +30,10 @@
             var fanoosId = $(this).attr('data-fanoos-id'); // or just use the one it has
           };
 
+          if ( typeof $(this).attr('data-fanoos-offset') !== typeof undefined && $(this).attr('data-fanoos-offset') !== false ) { // if element had a data-fanoos-offset
+            settings.offset = parseInt( $(this).attr('data-fanoos-offset') ); // update settings
+          };
+
           var element = { // create a fannos element
             'fanoosID' : fanoosId, // ID
             'offsetTop'  : Math.ceil($(this).offset().top) + settings.offset // position from top
