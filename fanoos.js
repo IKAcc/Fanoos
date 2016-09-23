@@ -17,12 +17,6 @@
 
         $('.fanoos').each(function() { // for all fanoos element
 
-          $(this).addClass(settings.animationClass).css({
-            'animation-play-state': 'paused',
-            'animation-duration': settings.duration + 'ms',
-            'animation-delay': settings.delay + 'ms',
-          }); // add animation class but don't let it play
-
           if ( $(this).attr('data-fanoos-id') == null || $(this).attr('data-fanoos-id').length == 0) { // if element didn't have a data-fanoos-id
             var fanoosId = 'fanoosElement' + elementNumber; // create a fanoos ID
             $(this).attr('data-fanoos-id', 'fanoosElement' + elementNumber); // and add it to data-fanoos-id
@@ -33,6 +27,16 @@
           if ( typeof $(this).attr('data-fanoos-offset') !== typeof undefined && $(this).attr('data-fanoos-offset') !== false ) { // if element had a data-fanoos-offset
             settings.offset = parseInt( $(this).attr('data-fanoos-offset') ); // update settings
           };
+
+          if ( typeof $(this).attr('data-fanoos-delay') !== typeof undefined && $(this).attr('data-fanoos-offset') !== false ) { // if element had a data-fanoos-delay
+            settings.delay = parseInt( Math.abs($(this).attr('data-fanoos-delay')) ); // update settings
+          };
+
+          $(this).addClass(settings.animationClass).css({
+            'animation-play-state': 'paused',
+            'animation-duration': settings.duration + 'ms',
+            'animation-delay': settings.delay + 'ms',
+          }); // add animation class but don't let it play
 
           var element = { // create a fannos element
             'fanoosID' : fanoosId, // ID
