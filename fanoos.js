@@ -32,6 +32,10 @@
             settings.delay = parseInt( Math.abs($(this).attr('data-fanoos-delay')) ); // update settings
           };
 
+          if ( typeof $(this).attr('data-fanoos-duration') !== typeof undefined && $(this).attr('data-fanoos-duration') !== false ) { // if element had a data-fanoos-duration
+            settings.duration = parseInt( Math.abs($(this).attr('data-fanoos-duration')) ); // update settings
+          };
+
           $(this).addClass(settings.animationClass).css({
             'animation-play-state': 'paused',
             'animation-duration': settings.duration + 'ms',
