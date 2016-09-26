@@ -5,11 +5,14 @@
       var settings = $.extend({ // These are the defaults.
         animationClass: 'animated', // css animation univetsal class
         duration: 1000, // css animation duration (ms)
-        offset: 0, // offset form top of the image
-        delay: 0 // delay on playing animation
+        offset: 0, // offset form top of the image (px)
+        delay: 0, // delay on playing animation (ms)
+        workOnMobile: false, // whether work on mobile or not
+        mobileWidth: 768 // Mobile max Width (px)
       }, options );
 
       var elementList = []; // a global list of fanoos elements
+      var windowWidth = $(window).outerWidth(); // width of window (to check for responsiveness)
 
       function init() { // init function: gets all elements who need fanoos to animate them
 
@@ -20,7 +23,8 @@
           var tempSettings = { // These are the unique settings
             duration: settings.duration, // TEMP css animation duration (ms)
             offset: settings.offset, // TEMP offset form top of the image
-            delay: settings.delay // TEMP delay on playing animation
+            delay: settings.delay, // TEMP delay on playing animation
+            workOnMobile: settings.workOnMobile // whether work on mobile or not
           }
 
           if ( $(this).attr('data-fanoos-id') == null || $(this).attr('data-fanoos-id').length == 0) { // if element didn't have a data-fanoos-id
@@ -42,20 +46,35 @@
             tempSettings.duration = parseInt( Math.abs($(this).attr('data-fanoos-duration')) ); // update settings
           };
 
-          $(this).addClass(settings.animationClass).css({
-            'animation-play-state': 'paused',
-            'animation-duration': tempSettings.duration + 'ms',
-            'animation-delay': tempSettings.delay + 'ms',
-          }); // add animation class but don't let it play
+          if ( typeof $(this).attr('data-fanoos-workOnMobile') !== typeof undefined ) { // if element had a data-fanoos-workOnMobile
+            tempSettings.workOnMobile = $(this).attr('data-fanoos-workOnMobile'); // update settings
+          };
 
-          var element = { // create a fannos element
-            'fanoosID' : fanoosId, // ID
-            'offsetTop'  : Math.ceil($(this).offset().top) + tempSettings.offset // position from top
+          if ( windowWidth < settings.mobileWidth && tempSettings.workOnMobile ) {
+            addElement($(this)); // add element to list and do stuff
+          } else if ( windowWidth >= settings.mobileWidth ) {
+            addElement($(this)); // add element to list and do stuff
           }
 
-          elementList.push(element); // add elment to list
+          function addElement(thisElement){
 
-          elementNumber++; // go for next elment
+            thisElement.addClass(settings.animationClass).css({
+              'animation-play-state': 'paused',
+              'animation-duration': tempSettings.duration + 'ms',
+              'animation-delay': tempSettings.delay + 'ms',
+            }); // add animation class but don't let it play
+
+            var element = { // create a fannos element
+              'fanoosID' : fanoosId, // ID
+              'offsetTop'  : Math.ceil(thisElement.offset().top) + tempSettings.offset // position from top
+            }
+
+            elementList.push(element); // add elment to list
+
+            elementNumber++; // go for next elment
+
+          }
+
         });
 
       }
