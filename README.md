@@ -57,7 +57,9 @@ see [Options](#options) for more initialization options.
 | animationClass| 'animated'             | Name of the class which activates animation |
 | duration      | 1000                   | Duration of Animation. _ms_ |
 | offset        | 0                      | Distance from element to play animation. _pixels_ |
-| delay      | 0                         | Time from activating animation to actually playing it. _ms_ |
+| delay         | 0                      | Time from activating animation to actually playing it. _ms_ |
+| workOnMobile  | false                  | Whether work on mobile or not. _Boolean_ |
+| mobileWidth   | 768                    | Max width of mobile device _pixels_ |
 
 ## Creators
 * ![](https://avatars3.githubusercontent.com/u/14288838?v=3&s=16) Javid Izadfar
