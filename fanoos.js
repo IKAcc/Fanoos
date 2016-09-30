@@ -58,16 +58,16 @@
 
           function addElement(thisElement){
 
+            var element = { // create a fannos element
+              'fanoosID' : fanoosId, // ID
+              'offsetTop'  : Math.ceil(thisElement.offset().top) + tempSettings.offset // position from top
+            }
+
             thisElement.addClass(settings.animationClass).css({
               'animation-play-state': 'paused',
               'animation-duration': tempSettings.duration + 'ms',
               'animation-delay': tempSettings.delay + 'ms',
             }); // add animation class but don't let it play
-
-            var element = { // create a fannos element
-              'fanoosID' : fanoosId, // ID
-              'offsetTop'  : Math.ceil(thisElement.offset().top) + tempSettings.offset // position from top
-            }
 
             elementList.push(element); // add elment to list
 
