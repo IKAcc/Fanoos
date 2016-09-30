@@ -1,5 +1,5 @@
 # Fanoos
-[![](http://ikacc.ir/github-assets/fanoos-header-v1.0.png)](https://github.com/IKAcc/Pol)
+[![](http://ikacc.ir/github-assets/fanoos-header-v1.1.png)](https://github.com/IKAcc/Pol)
 
 Fanoos (Farsi: فانوس, "Lighthouse") is a super lightweight jQuery plugin that lets you reveal part's of your website with animations when user is scrolling down the page.
 
